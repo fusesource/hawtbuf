@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.fusesource</groupId>
     <artifactId>fusesource-pom</artifactId>
-    <version>1.4</version>
+    <version>1.9</version>
   </parent>
   
   <groupId>org.fusesource.hawtbuf</groupId>
@@ -37,7 +37,6 @@
     <forge-project-id>hawtbuf</forge-project-id>
     <forge-project-id-uc>HAWTBUF</forge-project-id-uc>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <release-altGitURL>scm:git:ssh://git@forge.fusesource.com/${forge-project-id}.git</release-altGitURL>
 
     <commons-logging-version>1.1</commons-logging-version>
     <junit-version>4.7</junit-version>
@@ -94,8 +93,7 @@
   </issueManagement>
   <scm>
     <connection>scm:git:git://forge.fusesource.com/${forge-project-id}.git</connection>
-    <!-- Work around for issue: http://jira.codehaus.org/browse/SCM-444 -->
-    <developerConnection>${release-altGitURL}</developerConnection>
+    <developerConnection>scm:git:ssh://git@forge.fusesource.com/${forge-project-id}.git</developerConnection>
     <url>http://fusesource.com/forge/gitweb?p=${forge-project-id}.git</url>
   </scm>
   <distributionManagement>
