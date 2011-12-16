@@ -89,6 +89,19 @@ public final class DataByteArrayInputStream extends InputStream implements DataI
         return buf;
     }
 
+    public Buffer readBuffer(int len) {
+        int endpos = offset + length;
+        if (pos >= endpos) {
+            return null;
+        }
+        if (pos + len > endpos) {
+            len = length - pos;
+        }
+        Buffer rc = new Buffer(buf, pos, len);
+        pos += len;
+        return rc;
+    }
+
     /**
      * reset the <code>StoreByteArrayInputStream</code> to use an new byte
      * array
@@ -190,6 +203,10 @@ public final class DataByteArrayInputStream extends InputStream implements DataI
 
     public void readFully(byte[] b, int off, int len) {
         read(b, off, len);
+    }
+
+    public int skip(int n) {
+        return skipBytes(n);
     }
 
     public int skipBytes(int n) {
