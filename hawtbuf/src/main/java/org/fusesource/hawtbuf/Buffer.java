@@ -355,11 +355,7 @@ public class Buffer implements Comparable<Buffer> {
 
     @Override
     public String toString() {
-        String str = AsciiBuffer.decode(this);
-        if( str.length() > 500 ) {
-            str = str.substring(0, 500)+"(truncated)";
-        }
-        return "{ offset: "+offset+", length: "+length+", data: \""+str+"\" }";
+        return "{ offset: "+offset+", length: "+length+", data: \""+HexSupport.toHexFromBuffer(this, ",")+"\" }";
     }
 
     public int compareTo(Buffer o) {
