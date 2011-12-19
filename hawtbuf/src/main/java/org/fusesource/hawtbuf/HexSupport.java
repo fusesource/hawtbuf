@@ -63,24 +63,11 @@ public final class HexSupport {
     }
 
     public static String toHexFromBuffer(Buffer buffer) {
-        return toHexFromBuffer(buffer);
-    }
-
-    /**
-     * @param buffer
-     * @return
-     */
-    public static String toHexFromBuffer(Buffer buffer, String sep) {
-        if( sep==null ) {
-            sep = "";
-        }
-        StringBuffer rc = new StringBuffer(buffer.length * 2 + ((buffer.length -1)*sep.length()));
-        int endOffset =  - buffer.offset+buffer.length;
-        for (int i = buffer.offset; i < endOffset; i++) {
-            if(i!=0) {
-                rc.append(sep);
-            }
-            rc.append(HEX_TABLE[0xFF & buffer.data[i]]);
+        byte[] data = buffer.data;
+        StringBuffer rc = new StringBuffer(buffer.length * 2);
+        int end = buffer.offset + buffer.length;
+        for (int i = buffer.offset; i < end; i++) {
+            rc.append(HEX_TABLE[0xFF & data[i]]);
         }
         return rc.toString();
     }

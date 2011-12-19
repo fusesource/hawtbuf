@@ -353,11 +353,6 @@ public class Buffer implements Comparable<Buffer> {
         return equals((Buffer) obj);
     }
 
-    @Override
-    public String toString() {
-        return "{ offset: "+offset+", length: "+length+", data: \""+HexSupport.toHexFromBuffer(this, ",")+"\" }";
-    }
-
     public int compareTo(Buffer o) {
         if( this == o )
             return 0;
@@ -476,6 +471,26 @@ public class Buffer implements Comparable<Buffer> {
     }
     public static UTF8Buffer utf8(Buffer buffer) {
         return UTF8Buffer.utf8(buffer);
+    }
+
+    @Override
+    public String toString() {
+        int size = length;
+        boolean asciiPrintable = true;
+        for( int i=0; i < size; i++ ) {
+            int c = data[offset+i] & 0xFF;
+            if( c > 126 || c < 32 ) { // not a printable char
+                if( !(c=='\n' || c=='\r' | c=='\n' | c==27) ) { // except these.
+                    asciiPrintable = false;
+                    break;
+                }
+            }
+        }
+        if( asciiPrintable ) {
+            return "ascii: "+ascii();
+        } else {
+            return "hex: "+HexSupport.toHexFromBuffer(this);
+        }
     }
 
 }
