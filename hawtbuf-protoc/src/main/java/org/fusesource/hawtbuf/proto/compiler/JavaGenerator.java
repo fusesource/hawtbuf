@@ -243,7 +243,11 @@ public class JavaGenerator {
             staticOption="";
         }
         
-        String javaImplements = getOption(m.getOptions(), "java_implments", null);
+        String javaImplements = getOption(m.getOptions(), "java_implements", null);
+        if (javaImplements == null) {
+            // Provide compatibility with previous versions which had implements misspelled
+            javaImplements = getOption(m.getOptions(), "java_implments", null);
+        }
         
         String implementsExpression = "";
         if( javaImplements!=null ) {
