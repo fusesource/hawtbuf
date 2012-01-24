@@ -36,7 +36,7 @@ public class MessageDescriptor implements TypeDescriptor {
     private List<EnumFieldDescriptor> associatedEnumFieldDescriptors = new ArrayList<EnumFieldDescriptor>();
     
     private final MessageDescriptor parent;
-	private MessageDescriptor baseType;
+    private MessageDescriptor baseType;
 
     public MessageDescriptor(ProtoDescriptor protoDescriptor, MessageDescriptor parent) {
         this.protoDescriptor = protoDescriptor;
@@ -62,9 +62,9 @@ public class MessageDescriptor implements TypeDescriptor {
             
             // Some fields were not defined in the sub class..
             if( !baseFieldNames.isEmpty() ) {
-            	for (String fieldName : baseFieldNames) {
+                for (String fieldName : baseFieldNames) {
                     errors.add("base_type "+baseName+" field "+fieldName+" not defined in "+getName());
-				}
+                }
             }
         }
 
@@ -179,9 +179,9 @@ public class MessageDescriptor implements TypeDescriptor {
         return false;
     }
 
-	public MessageDescriptor getBaseType() {
-		return baseType;
-	}
+    public MessageDescriptor getBaseType() {
+        return baseType;
+    }
 
     public void associate(EnumFieldDescriptor desc) {
         associatedEnumFieldDescriptors.add(desc);
