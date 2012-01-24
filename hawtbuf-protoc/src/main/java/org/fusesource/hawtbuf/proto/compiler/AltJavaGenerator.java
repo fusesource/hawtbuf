@@ -116,7 +116,7 @@ public class AltJavaGenerator {
         outerClassName = javaClassName(proto);
 //        optimizeFor = getOption(proto.getOptions(), "optimize_for", "SPEED");
         multipleFiles = isMultipleFilesEnabled(proto);
-//		deferredDecode = Boolean.parseBoolean(getOption(proto.getOptions(), "deferred_decode", "false"));
+//        deferredDecode = Boolean.parseBoolean(getOption(proto.getOptions(), "deferred_decode", "false"));
         auto_clear_optional_fields = Boolean.parseBoolean(getOption(proto.getOptions(), "auto_clear_optional_fields", "false"));
 
         if (multipleFiles) {
@@ -1268,25 +1268,25 @@ public class AltJavaGenerator {
 
                     } else if (field.getGroup() != null) {
                         errors.add("This code generator does not support group fields.");
-//						p("case "+ makeTag(field.getTag(), WIRETYPE_START_GROUP)+ ":");
-//						indent();
-//						String type = javaType(field);
-//						if (repeated) {
-//							p(setter + "(readGroup(input, " + field.getTag()+ ", new " + type + "()));");
-//						} else {
-//							p("if (has" + uname + "()) {");
-//							indent();
-//							p("readGroup(input, " + field.getTag() + ", get"
-//									+ uname + "());");
-//							unindent();
-//							p("} else {");
-//							indent();
-//							p(setter + "(readGroup(input, " + field.getTag()
-//									+ ",new " + type + "()));");
-//							unindent();
-//							p("}");
-//						}
-//						p("");
+//                        p("case "+ makeTag(field.getTag(), WIRETYPE_START_GROUP)+ ":");
+//                        indent();
+//                        String type = javaType(field);
+//                        if (repeated) {
+//                            p(setter + "(readGroup(input, " + field.getTag()+ ", new " + type + "()));");
+//                        } else {
+//                            p("if (has" + uname + "()) {");
+//                            indent();
+//                            p("readGroup(input, " + field.getTag() + ", get"
+//                                    + uname + "());");
+//                            unindent();
+//                            p("} else {");
+//                            indent();
+//                            p(setter + "(readGroup(input, " + field.getTag()
+//                                    + ",new " + type + "()));");
+//                            unindent();
+//                            p("}");
+//                        }
+//                        p("");
                     } else {
                         p("case " + makeTag(field.getTag(), WIRETYPE_LENGTH_DELIMITED) + ":");
                         indent();
@@ -1641,42 +1641,42 @@ public class AltJavaGenerator {
 //        }
 //        
 //        if( !deferredDecode ) {
-//	        for (FieldDescriptor field : m.getFields().values()) {
-//	            if( field.getTypeDescriptor()!=null && !field.getTypeDescriptor().isEnum()) {
-//	                String uname = uCamel(field.getName());
-//	                p("if( has" + uname + "() ) {");
-//	                indent();
-//	                if( !field.isRepeated() ) {
-//	                    p("try {");
-//	                    indent();
-//	                    p("get" + uname + "().assertInitialized();");
-//	                    unindent();
-//	                    p("} catch (org.fusesource.hawtbuf.proto.UninitializedMessageException e){");
-//	                    indent();
-//	                    p("missingFields.addAll(prefix(e.getMissingFields(),\""+field.getName()+".\"));");
-//	                    unindent();
-//	                    p("}");
-//	                } else {
-//	                    String type = javaCollectionType(field);
-//	                    p("java.util.List<"+type+"> l = get" + uname + "List();");
-//	                    p("for( int i=0; i < l.size(); i++ ) {");
-//	                    indent();
-//	                    p("try {");
-//	                    indent();
-//	                    p("l.get(i).assertInitialized();");
-//	                    unindent();
-//	                    p("} catch (org.fusesource.hawtbuf.proto.UninitializedMessageException e){");
-//	                    indent();
-//	                    p("missingFields.addAll(prefix(e.getMissingFields(),\""+field.getName()+"[\"+i+\"]\"));");
-//	                    unindent();
-//	                    p("}");
-//	                    unindent();
-//	                    p("}");
-//	                }
-//	                unindent();
-//	                p("}");
-//	            }
-//	        }
+//            for (FieldDescriptor field : m.getFields().values()) {
+//                if( field.getTypeDescriptor()!=null && !field.getTypeDescriptor().isEnum()) {
+//                    String uname = uCamel(field.getName());
+//                    p("if( has" + uname + "() ) {");
+//                    indent();
+//                    if( !field.isRepeated() ) {
+//                        p("try {");
+//                        indent();
+//                        p("get" + uname + "().assertInitialized();");
+//                        unindent();
+//                        p("} catch (org.fusesource.hawtbuf.proto.UninitializedMessageException e){");
+//                        indent();
+//                        p("missingFields.addAll(prefix(e.getMissingFields(),\""+field.getName()+".\"));");
+//                        unindent();
+//                        p("}");
+//                    } else {
+//                        String type = javaCollectionType(field);
+//                        p("java.util.List<"+type+"> l = get" + uname + "List();");
+//                        p("for( int i=0; i < l.size(); i++ ) {");
+//                        indent();
+//                        p("try {");
+//                        indent();
+//                        p("l.get(i).assertInitialized();");
+//                        unindent();
+//                        p("} catch (org.fusesource.hawtbuf.proto.UninitializedMessageException e){");
+//                        indent();
+//                        p("missingFields.addAll(prefix(e.getMissingFields(),\""+field.getName()+"[\"+i+\"]\"));");
+//                        unindent();
+//                        p("}");
+//                        unindent();
+//                        p("}");
+//                    }
+//                    unindent();
+//                    p("}");
+//                }
+//            }
 //        }
 //        p("return missingFields;");
 //        unindent();

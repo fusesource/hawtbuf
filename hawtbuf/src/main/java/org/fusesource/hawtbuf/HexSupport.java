@@ -42,7 +42,7 @@ public final class HexSupport {
         "f0", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "fa", "fb", "fc", "fd", "fe", "ff",
     };
     private static final int[] INT_OFFSETS = new int[]{
-    	24,16,8,0
+        24,16,8,0
     };
     
     private HexSupport() {
@@ -81,11 +81,11 @@ public final class HexSupport {
     public static String toHexFromInt(int value, boolean trim) {
         StringBuffer rc = new StringBuffer(INT_OFFSETS.length*2);
         for (int i = 0; i < INT_OFFSETS.length; i++) {
-        	int b = 0xFF & (value>>INT_OFFSETS[i]);
-        	if( !(trim && b == 0) ) { 
-        		rc.append(HEX_TABLE[b]);
-        		trim=false;
-        	}
+            int b = 0xFF & (value>>INT_OFFSETS[i]);
+            if( !(trim && b == 0) ) {
+                rc.append(HEX_TABLE[b]);
+                trim=false;
+            }
         }
         return rc.toString();
     }

@@ -47,9 +47,9 @@ final public class AsciiBuffer extends Buffer {
     
     public String toString()
     {
-    	if( value == null ) {
-    		value = decode(this); 
-    	}
+        if( value == null ) {
+            value = decode(this);
+        }
         return value; 
     }
 
