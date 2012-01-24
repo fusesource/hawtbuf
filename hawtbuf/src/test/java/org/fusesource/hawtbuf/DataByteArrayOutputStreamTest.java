@@ -30,7 +30,7 @@ public class DataByteArrayOutputStreamTest {
      * @throws IOException
      */
     @Test()
-	public void testResize() throws IOException {
+    public void testResize() throws IOException {
         int initSize = 64;
         DataByteArrayOutputStream out = new DataByteArrayOutputStream();
 

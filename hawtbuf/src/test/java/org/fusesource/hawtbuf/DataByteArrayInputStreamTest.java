@@ -29,7 +29,7 @@ public class DataByteArrayInputStreamTest {
      * https://issues.apache.org/activemq/browse/AMQ-1911
      */
     @Test()
-	public void testNonAscii() throws Exception {
+    public void testNonAscii() throws Exception {
         doMarshallUnMarshallValidation("meißen");
         
         int test = 0; // int to get Supplementary chars
