@@ -87,7 +87,7 @@ public class Buffer implements Comparable<Buffer> {
         return this;
     }
 
-	public final Buffer slice(int low, int high) {
+    public final Buffer slice(int low, int high) {
         int sz;
         if (high < 0) {
             sz = length + high;
