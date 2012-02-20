@@ -49,22 +49,42 @@ public final class DataByteArrayInputStream extends InputStream implements DataI
      * @param buf the input buffer.
      */
     public DataByteArrayInputStream(byte buf[]) {
-        this.buf = buf;
-        this.pos = 0;
-        this.offset = 0;
-        this.length = buf.length;
+        restart(buf);
     }
 
     /**
      * Creates a <code>StoreByteArrayInputStream</code>.
      * 
-     * @param sequence the input buffer.
+     * @param buffer the input buffer.
      */
-    public DataByteArrayInputStream(Buffer sequence) {
-        this.buf = sequence.getData();
-        this.offset = sequence.getOffset();
-        this.pos =  this.offset;
-        this.length = sequence.length;
+    public DataByteArrayInputStream(Buffer buffer) {
+        restart(buffer);
+    }
+
+    /**
+     * reset the <code>StoreByteArrayInputStream</code> to use an new
+     * Buffer
+     *
+     * @param buffer
+     */
+    public void restart(Buffer buffer) {
+        this.buf = buffer.getData();
+        this.offset = buffer.getOffset();
+        this.pos = this.offset;
+        this.length = buffer.getLength();
+    }
+
+    /**
+     * re-start the input stream - reusing the current buffer
+     *
+     * @param size
+     */
+    public void restart(int size) {
+        if (buf == null || buf.length < size) {
+            buf = new byte[size];
+        }
+        restart(buf);
+        this.length = size;
     }
 
     /**
@@ -117,31 +137,6 @@ public final class DataByteArrayInputStream extends InputStream implements DataI
     public void restart() {
         pos = 0;
         length = buf.length;
-    }
-
-    /**
-     * reset the <code>StoreByteArrayInputStream</code> to use an new
-     * Buffer
-     * 
-     * @param sequence
-     */
-    public void restart(Buffer sequence) {
-        this.buf = sequence.getData();
-        this.pos = sequence.getOffset();
-        this.length = sequence.getLength();
-    }
-
-    /**
-     * re-start the input stream - reusing the current buffer
-     * 
-     * @param size
-     */
-    public void restart(int size) {
-        if (buf == null || buf.length < size) {
-            buf = new byte[size];
-        }
-        restart(buf);
-        this.length = size;
     }
 
     /**
