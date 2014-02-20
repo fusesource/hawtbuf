@@ -53,4 +53,12 @@ public class DataByteArrayInputStreamTest {
         String readBack = in.readUTF();
         assertEquals(value, readBack);
     }
+
+    @Test()
+    public void testUnmarshallEmptyBuffer() throws Exception {
+        DataByteArrayInputStream in = new DataByteArrayInputStream(new byte[]{});
+        Buffer readBack = in.readBuffer(0);
+        assertNotNull(readBack);
+        assertEquals(0, readBack.length);
+    }
 }

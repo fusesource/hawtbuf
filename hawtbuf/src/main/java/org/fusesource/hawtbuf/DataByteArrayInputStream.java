@@ -111,7 +111,7 @@ public final class DataByteArrayInputStream extends InputStream implements DataI
 
     public Buffer readBuffer(int len) {
         int endpos = offset + length;
-        if (pos >= endpos) {
+        if (pos > endpos) {
             return null;
         }
         if (pos + len > endpos) {
