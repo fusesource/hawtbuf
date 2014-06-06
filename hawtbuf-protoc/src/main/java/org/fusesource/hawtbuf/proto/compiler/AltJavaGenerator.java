@@ -1155,7 +1155,7 @@ public class AltJavaGenerator {
                 p("case 0:");
                 p("   return this;");
                 p("default: {");
-
+                p("   input.skipField(tag);");
                 p("   break;");
                 p("}");
 
